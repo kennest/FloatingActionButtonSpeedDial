@@ -20,11 +20,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.content.res.AppCompatResources;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.leinardi.android.speeddial.SpeedDialActionItem;
 import com.leinardi.android.speeddial.SpeedDialView;
@@ -44,6 +46,33 @@ public class MainActivity extends BaseUseCaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initSpeedDial(savedInstanceState == null);
+
+        mFab.setImageResource(R.drawable.ic_snack_white_24dp);
+
+        new CountDownTimer(3000, 1000) {
+            @Override
+            public void onTick(long l) {
+                Log.d("TTT", "l =" + l);
+                if (l <= 2000) {
+                    mFab.hide();
+                }
+                if (l <= 1000) {
+                    mFab.show();
+                }
+            }
+
+            @Override
+            public void onFinish() {
+                mFab.performClick();
+            }
+        }.start();
+
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mFab.setImageResource(R.drawable.ic_close_white_24dp);
+            }
+        });
 
     }
 

@@ -21,6 +21,7 @@ import android.os.SystemClock;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -49,6 +50,7 @@ public abstract class BaseUseCaseActivity extends AppCompatActivity {
     private SpeedDialView mSpeedDial;
     private RecyclerView mRecyclerView;
     private CustomAdapter mCustomAdapter;
+    protected FloatingActionButton mFab;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,6 +60,7 @@ public abstract class BaseUseCaseActivity extends AppCompatActivity {
         initToolbar();
         initRecyclerView();
         mSpeedDial = findViewById(R.id.speedDial);
+        mFab = findViewById(R.id.fabtest);
     }
 
     @LayoutRes
@@ -78,10 +81,10 @@ public abstract class BaseUseCaseActivity extends AppCompatActivity {
                     int id = item.getItemId();
                     //noinspection SimplifiableIfStatement
                     if (id == R.id.action_show) {
-                        if (mSpeedDial.getVisibility() == View.VISIBLE) {
-                            mSpeedDial.hide();
+                        if (mFab.getVisibility() == View.VISIBLE) {
+                            mFab.hide();
                         } else {
-                            mSpeedDial.show();
+                            mFab.show();
                         }
                     } else if (id == R.id.action_snack) {
                         showSnackbar("Test snackbar");
